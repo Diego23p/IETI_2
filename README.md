@@ -47,6 +47,23 @@ npm start
 
 ## Part 2: Enable App Navigation
 
+Condición agregada en el método render:
+```
+Link	
+    to={this.state.isLoggedIn ?
+		("/todo") : ("/")}
+    > Todo
+</Link>
+```
+
+Cuando isLoggedIn es ```false```, no se permite la navegación a ```/todo```:
+
+![](/img/2.jpg)
+
+Cuando isLoggedIn es ```true```, se permite la navegación a ```/todo```:
+
+![](/img/3.jpg)
+
 ## Part 3: Local Storage
 
 
