@@ -3,7 +3,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import logo from './components/logo.svg';
 import {Login} from "./components/Login";
 import {TodoApp} from "./components/TodoApp";
-import {BrowserRouter as Router, Link, Route} from 'react-router-dom'
+import {BrowserRouter as Router, Link, Route, Redirect} from 'react-router-dom'
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -15,22 +15,34 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {isLoggedIn:false};
+        this.setUser = this.setUser.bind(this);
     }
 
+    setUser() {
+        localStorage.setItem("Diego",1234);
+        if (localStorage.getItem("isLoggedIn") == null){
+            localStorage.setItem("isLoggedIn",false)
+         }
+    }
 
     render() {
 
-        const LoginView = () => (
-            <Login/>
-        );
+        const LoginView = () => {
+            return <Login/>
+        };
 
-        const TodoAppView = () => (
-            <TodoApp/>
-        );
+        const TodoAppView = () => {
+            if (localStorage.getItem("isLoggedIn") == "false"){
+                alert("Inicie sesión para ir a ToDo")
+                return <Redirect to="/" />
+            }
+            return <TodoApp/>
+        };
 
         return (
             <Router>
-                <div className="App">
+                <div className="App" onLoad={this.setUser}>
+                
                     <header className="App-header">
                         <img src={logo} className="App-logo" alt="logo"/>
                         <h1 className="App-title">TODO React App</h1>
@@ -50,11 +62,7 @@ class App extends Component {
                                         <Link to="/" >Login</Link>
                                     </MenuItem>
                                     <MenuItem onClick={popupState.close}>
-                                        <Link 
-                                            to={this.state.isLoggedIn ?
-                                                ("/todo") : ("/")}
-                                        > Todo
-                                        </Link>
+                                        <Link to="/todo" > Todo </Link>
                                     </MenuItem>
                                 </Menu>
                             </React.Fragment>

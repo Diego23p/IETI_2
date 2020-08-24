@@ -65,6 +65,31 @@ Cuando isLoggedIn es ```true```, se permite la navegación a ```/todo```:
 
 ## Part 3: Local Storage
 
+Apenas inicia la aplicación, se tiene que la variable ```isLoggedIn``` de ```Local Storage``` es ```false```, y se intenta navegar a ```Todo``` mostrará el siguiente mensaje:
+
+![](/img/4.jpg)
+
+Si se intenta iniciar con un usuario o contraseña incorrecta muestra el siguiente mensaje:
+
+![](/img/5.jpg)
+
+Al iniciar correctamente se muestra un mensaje y la variable ```isLoggedIn``` cambia su estado a ```true```, por lo tanto se permite navegar hasta ```Todo``` ya que la función Lambda no verifica el valor en ```App.js``` sino en ```Local Storage```:
+```
+const TodoAppView = () => {
+	if (localStorage.getItem("isLoggedIn") == "false"){
+        alert("Inicie sesión para ir a ToDo")
+        return <Redirect to="/" />
+    }
+    return <TodoApp/>
+};
+```
+
+![](/img/6.jpg)
+
+Al detener al servidor los datos persisten:
+
+
+![](/img/7.jpg)
 
 # Autores
 
