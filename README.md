@@ -47,7 +47,7 @@ npm start
 
 ## Part 2: Enable App Navigation
 
-Se modificó el funcionamiento de la función Lambda de TodoAppView:
+* Se modificó el funcionamiento de la función Lambda de TodoAppView:
 ```
 const TodoAppView = () => {
 	if (!this.state.isLoggedIn) return <Redirect to="/" />
@@ -55,25 +55,25 @@ const TodoAppView = () => {
     };
 ```
 
-Cuando isLoggedIn es ```false```, no se permite la navegación a ```/todo```:
+* Cuando isLoggedIn es ```false```, no se permite la navegación a ```/todo```:
 
 ![](/img/2.jpg)
 
-Cuando isLoggedIn es ```true```, se permite la navegación a ```/todo```:
+* Cuando isLoggedIn es ```true```, se permite la navegación a ```/todo```:
 
 ![](/img/3.jpg)
 
 ## Part 3: Local Storage
 
-Apenas inicia la aplicación, se tiene que la variable ```isLoggedIn``` de ```Local Storage``` es ```false```, y se intenta navegar a ```Todo``` mostrará el siguiente mensaje:
+* Apenas inicia la aplicación, se tiene que la variable ```isLoggedIn``` de ```Local Storage``` es ```false```, y se intenta navegar a ```Todo``` mostrará el siguiente mensaje:
 
 ![](/img/4.jpg)
 
-Si se intenta iniciar con un usuario o contraseña incorrecta muestra el siguiente mensaje:
+* Si se intenta iniciar con un usuario o contraseña incorrecta muestra el siguiente mensaje:
 
 ![](/img/5.jpg)
 
-Al iniciar correctamente se muestra un mensaje y la variable ```isLoggedIn``` cambia su estado a ```true```, por lo tanto se permite navegar hasta ```Todo``` ya que la función Lambda no verifica el valor en ```App.js``` sino en ```Local Storage```:
+* Al iniciar correctamente se muestra un mensaje y la variable ```isLoggedIn``` cambia su estado a ```true```, por lo tanto se permite navegar hasta ```Todo``` ya que la función Lambda no verifica el valor en ```App.js``` sino en ```Local Storage```:
 ```
 const TodoAppView = () => {
 	if (localStorage.getItem("isLoggedIn") == "false"){
@@ -86,7 +86,7 @@ const TodoAppView = () => {
 
 ![](/img/6.jpg)
 
-Al detener al servidor los datos persisten:
+* Al detener al servidor los datos persisten:
 
 
 ![](/img/7.jpg)
