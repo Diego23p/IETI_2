@@ -47,13 +47,12 @@ npm start
 
 ## Part 2: Enable App Navigation
 
-Condición agregada en el método render:
+Se modificó el funcionamiento de la función Lambda de TodoAppView:
 ```
-Link	
-    to={this.state.isLoggedIn ?
-		("/todo") : ("/")}
-    > Todo
-</Link>
+const TodoAppView = () => {
+	if (!this.state.isLoggedIn) return <Redirect to="/" />
+        return <TodoApp/>
+    };
 ```
 
 Cuando isLoggedIn es ```false```, no se permite la navegación a ```/todo```:
